@@ -15,13 +15,13 @@ class ContentReferencer {
     
     function parse_content( $input, $args, Parser $parser, PPFrame $frame ) {
                 
-        return Html::rawElement( 'div', array( 'id' => $args['id'] ) , $parser->recursiveTagParse( $input, $frame ) );
+        return Html::rawElement( 'div',  array(  "id"=>$args['id'] )  , $parser->recursiveTagParse( $input, $frame ) );
         
     }
     
     function parse_content_ref( $input, $args, Parser $parser, PPFrame $frame ) {
                 
-        return $parser->recursiveTagParse('[[' . $args['page'] . "#$args['id']" . '|' . $input . ']]');
+        return $parser->recursiveTagParse('[[' . $args['page'] . '#' . $args['id'] . '|' . $input . ']]');
         
     }
 }
