@@ -26,7 +26,16 @@ class ContentReferencer {
                 
         $id = $args['id'];
         
-        return $parser->recursiveTagParse( "<repeat table='content-ref' criteria='id=" . $id . "'>[[{{{link}}}#$id|$input]]</repeat>", $frame );
+        
+        $parsed_text = $parser->recursiveTagParse( "<repeat table='content-ref' criteria='id=" . $id . "'>[[{{{link}}}#$id|$input]]</repeat>", $frame );
+        
+        
+        if (strpos($parsed_text, 'UNIQ') !== false) {
+            return "REFERENCE TO TAG $id doesn't exist " . $parser->recursiveTagParse('[[Category:Broken Reference]]');
+        }
+        
+        return $parsed_text;
+
         
     }
 }
