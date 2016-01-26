@@ -7,8 +7,8 @@
     "Alessandro Tundo",
     "Davide Valsecchi"
   ],
-  "url": "https://github.com/WikiToLearn/DMath",
-  "descriptionmsg": "This setups a hook for the <code><nowiki><dmath></nowiki></code> tag, which is the same as <code><nowiki><math></nowiki></code> except it uses block formatting and it is centered.",
+  "url": "https://github.com/WikiToLearn/ContentReferencer",
+  "descriptionmsg": "This setups hooks for <code>content</code> and <code>content-ref</code> tags. This setups a global referencing system",
   "license-name": "GPL-2.0+",
   "type": "parserhook",
   "AutoloadClasses" : {
