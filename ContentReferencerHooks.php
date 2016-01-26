@@ -23,7 +23,7 @@ class ContentReferencer {
     }
     
     function parse_content_ref( $input, $args, Parser $parser, PPFrame $frame ) {
-                
+        
         $id = $args['id'];
         
         $exists = strpos($parser->recursiveTagParseFully( "<repeat table='content-ref' criteria='id=$id'>123abctestxyz</repeat>", $frame ), '123abctestxyz') !== false;
@@ -34,7 +34,7 @@ class ContentReferencer {
         }
         
         return $parser->recursiveTagParse( "<repeat table='content-ref' criteria='id=$id'>[[{{{link}}}#$id|$input]]</repeat>", $frame );
-
+        
         
     }
 }
