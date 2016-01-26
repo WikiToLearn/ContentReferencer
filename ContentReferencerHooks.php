@@ -14,14 +14,19 @@ class ContentReferencer {
     }
     
     function parse_content( $input, $args, Parser $parser, PPFrame $frame ) {
-                
-        return Html::rawElement( 'div',  array(  "id"=>$args['id'] )  , $parser->recursiveTagParse( $input, $frame ) );
         
+        $ret = Html::rawElement( 'div',  array(  "id"=>$args['id'] ),  $input );
+        
+        $ret .= "<data table='content-ref' fields=id,link>" . $args['id'] . ',' . $parser->getTitle() . "</data>";
+        
+        return $parser->recursiveTagParse( $ret, $frame );
     }
     
     function parse_content_ref( $input, $args, Parser $parser, PPFrame $frame ) {
                 
-        return $parser->recursiveTagParse('[[' . $args['page'] . '#' . $args['id'] . '|' . $input . ']]');
+        $id = $args['id'];
+        
+        return $parser->recursiveTagParse( "<repeat table='content-ref' criteria='id=" . $id . "'>[[{{{link}}}#$id|$input]]</repeat>", $frame );
         
     }
 }
