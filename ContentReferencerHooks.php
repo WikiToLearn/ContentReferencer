@@ -106,6 +106,7 @@ class ContentReferencer {
         if($PageToReferenceTo == "") {
             // if it is still empty, then it is an empty ref, so add it to a broken category.
             $output .= "[[Category:BrokenReference]]";
+            $PageToReferenceTo = "How to fix a broken reference";
         }
         
         $output .= "[[" . $PageToReferenceTo . "#$ID|$input]]";
