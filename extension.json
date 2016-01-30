@@ -20,6 +20,9 @@
   "Hooks": {
     "ParserFirstCallInit" : [
       "ContentReferencer::onParserFirstCallSetup"
+    ],
+    "ArticleDelete": [
+      "ContentReferencer::onArticleDelete"
     ]
   },
   "manifest_version": 1

@@ -14,6 +14,25 @@ class ContentReferencer {
         $parser->setHook( 'content-ref', 'ContentReferencer::parse_content_ref' );
     }
     
+    // deletes all the references that it uses
+    static function onArticleDelete( WikiPage &$article, User &$user, &$reason, &$error ) {
+        
+        
+        try {
+        
+            $DB = wfGetDB(DB_MASTER); // get the DB
+            $DB->begin(); // start a write transatction
+            
+            // delete the references
+            $DB->delete(ContentReferencerTableName, "reference_page_name='" . $article->getTitle() . "'");
+            
+            $DB->commit(); // stop the transaction
+        } catch (Exception $e) {
+            
+        }
+        
+    }
+    
     static function parse_content( $input, array $args, Parser $parser, PPFrame $frame ) {
         // TODO: is there a better place to put the database insertion code? Maybe on page save is more approiate...
         // get the database

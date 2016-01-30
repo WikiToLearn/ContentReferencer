@@ -1,7 +1,7 @@
 <?php
 
 // load the database name
-require_once("../ContentReferencerTableName.php");
+require_once(dirname(__FILE__) . "/../ContentReferencerTableName.php");
 
 // find the MediaWiki install
 define("MWEntryPoint", "/maintenance/commandLine.inc");
