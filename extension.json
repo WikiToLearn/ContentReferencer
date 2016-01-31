@@ -23,6 +23,9 @@
     ],
     "ArticleDelete": [
       "ContentReferencer::onArticleDelete"
+    ],
+    "PageContentSave": [
+      "ContentReferencer::onPageContentSave"
     ]
   },
   "manifest_version": 1
