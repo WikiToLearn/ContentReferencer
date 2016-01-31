@@ -26,6 +26,9 @@
     ],
     "PageContentSave": [
       "ContentReferencer::onPageContentSave"
+    ],
+    "SpecialMovepageAfterMove": [
+      "ContentReferencer::onSpecialMovepageAfterMove"
     ]
   },
   "manifest_version": 1

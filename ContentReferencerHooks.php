@@ -31,13 +31,32 @@ class ContentReferencer {
             
             $DB->commit(); // stop the transaction
         } catch (Exception $e) {
-            
+            die($e->getMessage());
         }
         
     }
     
-    public static function onPageContentSave(
-        WikiPage &$wikiPage, User &$user, Content &$content, &$summary, $isMinor, $isWatch, $section, &$flags, Status &$status ) {
+    // moves the references
+    static function onSpecialMovepageAfterMove(MovePageForm &$form, Title &$oldTitle, Title &$newTitle) {
+                
+        try {
+            
+            $DB = wfGetDB(DB_MASTER);
+            $DB->begin();
+            
+            $DB->update(ContentReferencerTableName, array('reference_page_name' => $newTitle), 
+                array("reference_page_name='$oldTitle'"));
+         
+            $DB->commit();
+         
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    
+    static function onPageContentSave(
+        WikiPage &$wikiPage, User &$user, Content &$content, &$summary, 
+        $isMinor, $isWatch, $section, &$flags, Status &$status ) {
         
         // get the current tags from the page
         /////////////////////////////////////
